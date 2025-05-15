@@ -1,0 +1,146 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Background Image */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('gym_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+  }
+  
+  /* Navigation Bar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar ul li a:hover {
+    color: yellow;
+  }
+  
+  .navbar ul li a.active {
+    color: yellow;
+    text-decoration: underline;
+  }
+  
+  .page-title {
+    position: relative;
+    margin-top: 140px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Logo */
+  .logo img {
+    height: 60px;
+  }
+  
+  /* Glass Container: BIG + CENTERED */
+  .glass-container {
+    margin: 140px auto 80px auto;
+    padding: 40px;
+    width: 85%;
+    max-width: 1300px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Image */
+  .gym-image {
+    width: 45%;
+    min-width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Text */
+  .about-text {
+    flex: 1;
+    font-size: 20px;
+    color: white;
+  }
+  
+  .about-text p {
+    line-height: 1.7;
+    color: white;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    z-index: 999;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .glass-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+  
+    .gym-image {
+      width: 100%;
+    }
+  
+    .about-text {
+      width: 100%;
+      padding-top: 20px;
+    }
+  
+    .footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+  
+    .page-title {
+      top: 90px;
+      font-size: 18px;
+    }
+  }

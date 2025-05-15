@@ -1,0 +1,249 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Background */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('gym_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+  }
+  
+  /* Navigation Bar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+  }
+  
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar ul li a:hover,
+  .navbar ul li a.active {
+    color: yellow;
+    border-bottom: 2px solid yellow;
+    padding-bottom: 4px;
+  }
+  
+  .logo img {
+    height: 60px;
+  }
+  
+  /* Top Page Title */
+  .page-title {
+    text-align: center;
+    margin-top: 120px;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Plans Section */
+  .plans-container {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .plan-card {
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .plan-card h1 {
+    font-size: 2.5rem;
+    color: #d32f2f;
+  }
+  
+  .plan-card h3 {
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .plan-card p {
+    font-size: 0.9rem;
+  }
+  
+  .plan-card button {
+    margin: 15px 0;
+    padding: 10px 20px;
+    border: 2px solid #d32f2f;
+    background: none;
+    color: #d32f2f;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .plan-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-top: 10px;
+  }
+  
+  .plan-card ul li::before {
+    content: "✔️ ";
+  }
+  
+  /* Form Section */
+  .form-section {
+    margin: 40px auto 100px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    color: black;
+    display: none;
+  }
+  
+  .form-section form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .form-section input,
+  .form-section select {
+    flex: 1 1 48%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .input-error {
+    border: 2px solid red !important;
+  }
+  
+  .error {
+    color: red;
+    font-size: 13px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .form-section button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #d32f2f;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  /* Invoice Summary */
+  #selectedPlanName {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #d32f2f;
+    text-align: center;
+  }
+  
+  .invoice-box {
+    margin-top: 30px;
+    padding: 20px 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    color: black;
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .invoice-box h3 {
+    color: #d32f2f;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .invoice-box p {
+    margin: 6px 0;
+  }
+  
+  .invoice-box p strong {
+    font-weight: 600;
+  }
+  
+  /* Footer */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    z-index: 999;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .plans-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .form-section form {
+      flex-direction: column;
+    }
+  
+    .form-section input,
+    .form-section select {
+      width: 100%;
+    }
+  
+    .footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+  }

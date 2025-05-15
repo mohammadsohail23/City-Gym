@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>City Gym - Membership</title>
+  <link rel="stylesheet" href="membership_styles.css" >
+  <script src="form.js" defer></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="logo">
+      <img src="gym_logo.jpg" alt="City Gym Logo" >
+    </div>
+    <ul>
+      <li><a href="location.html">Location</a></li>
+      <li><a href="index.html">About Us</a></li>
+      <li><a href="membership_form.html" class="active">Membership Form</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Heading -->
+  <header class="page-title">
+    <h1>Membership Form</h1>
+  </header>
+
+  <!-- Main Wrapper for Content -->
+  <main>
+    <!-- Plans Section -->
+    <section class="plans-container">
+      <div class="plan-card">
+        <h3>ULTIMATE ACH</h3>
+        <h1>$29<sup>.99</sup><span>/mo</span></h1>
+        <p>plus taxes and fees</p>
+        <button onclick="showForm('Ultimate ACH')">Select</button>
+        <ul>
+          <li>Nationwide Access</li>
+          <li>Unlimited Guests</li>
+          <li>Group Classes</li>
+          <li>Dumbbells up to 120lbs</li>
+          <li>Locker Room with Showers</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <h3>CORE ACH</h3>
+        <h1>$26<sup>.99</sup><span>/mo</span></h1>
+        <p>plus taxes and fees</p>
+        <button onclick="showForm('Core ACH')">Select</button>
+        <ul>
+          <li>No Commitment</li>
+          <li>Nationwide Access</li>
+          <li>Workout Included</li>
+          <li>Cardio Equipment</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <h3>FLEX ACH</h3>
+        <h1>$19<sup>.99</sup><span>/mo</span></h1>
+        <p>plus taxes and fees</p>
+        <button onclick="showForm('Flex ACH')">Select</button>
+        <ul>
+          <li>Home Club Only</li>
+          <li>No Commitment</li>
+          <li>Workout Included</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="membershipForm" style="display: none;">
+      <h2 id="selectedPlanName">You selected: </h2>
+      <form onsubmit="return validateForm()">
+        <input type="text" id="fname" placeholder="First Name" >
+        <span class="error" id="fname-error"></span>
+
+        <input type="text" id="lname" placeholder="Last Name" >
+        <span class="error" id="lname-error"></span>
+
+        <input type="email" id="email" placeholder="Email" >
+        <span class="error" id="email-error"></span>
+
+        <input type="tel" id="phone" placeholder="Phone Number" >
+        <span class="error" id="phone-error"></span>
+
+        <input type="text" id="address" placeholder="Mailing Address" >
+        <span class="error" id="address-error"></span>
+
+        <input type="text" id="city" placeholder="City" >
+        <span class="error" id="city-error"></span>
+
+        <input type="text" id="state" placeholder="State" >
+        <span class="error" id="state-error"></span>
+
+        <input type="text" id="zip" placeholder="Zip Code" >
+        <span class="error" id="zip-error"></span>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- Invoice Box -->
+      <div class="invoice-box" id="invoiceBox">
+        <h3>Invoice Summary</h3>
+        <p><strong>Plan:</strong> <span id="invoicePlan">-</span></p>
+        <p><strong>Base Price:</strong> $<span id="invoiceBase">0.00</span></p>
+        <p><strong>Tax (8.875%):</strong> $<span id="invoiceTax">0.00</span></p>
+        <p><strong>Total:</strong> $<span id="invoiceTotal">0.00</span></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>Timings: 9 AM - 9 PM MON-SAT</span>
+    <span>&copy; City Gym 2025</span>
+    <span>Call us at: 212-222-3333</span>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <title>City Gym - Locations</title>
+  <link  href="styles.css" rel="stylesheet">
+  <link  href="location.css" rel="stylesheet">
+</head>
+<body>
+ <!-- Navigation -->
+ <nav class="navbar" aria-label="Main Navigation">
+    <div class="logo"><img src="gym_logo.jpg" alt="City Gym Logo" /></div>
+    <ul>
+      <li><a href="location.html" class="active">Location</a></li>
+      <li><a href="index.html">About Us</a></li>
+      <li><a href="membership_form.html">Membership Form</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Title -->
+  <header class="page-title">
+    <h1>Location</h1>
+  </header>
+
+  <!-- Search bar -->
+  <div id="searchBox">
+    <label for="searchInput" class="visually-hidden">Search location</label>
+    <input id="searchInput" type="text" placeholder="Search for a location in the U.S." />
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Map Container -->
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>Timings: 9 AM - 9 PM MON-SAT</span>
+    <span>&copy; City Gym 2025</span>
+    <span>Call us at: 212-222-3333</span>
+  </footer>
+
+  <!-- Map JS -->
+  <script>
+    let map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 39.8283, lng: -98.5795 },
+        zoom: 4,
+        styles: [
+          { elementType: 'geometry', stylers: [{ color: '#1d2c4d' }] },
+          { elementType: 'labels.text.fill', stylers: [{ color: '#8ec3b9' }] },
+          { elementType: 'labels.text.stroke', stylers: [{ color: '#1a3646' }] },
+          {
+            featureType: 'administrative.country',
+            elementType: 'geometry.stroke',
+            stylers: [{ color: '#4b6878' }]
+          },
+          {
+            featureType: 'landscape.man_made',
+            elementType: 'geometry.stroke',
+            stylers: [{ color: '#334e87' }]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'geometry.fill',
+            stylers: [{ color: '#023e58' }]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{ color: '#304a7d' }]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'geometry.stroke',
+            stylers: [{ color: '#1e303d' }]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry.fill',
+            stylers: [{ color: '#0e1626' }]
+          }
+        ]
+      });
+
+      const gymLocations = [
+        { name: "Gym 1 - NYC", position: { lat: 40.7128, lng: -74.0060 } },
+        { name: "Gym 2 - Manhattan: Midtown", position: { lat: 40.7549, lng: -73.9840 } },
+        { name: "Gym 3 - Upper East Side", position: { lat: 40.7736, lng: -73.9566 } },
+        { name: "Gym 4 - Harlem", position: { lat: 40.8116, lng: -73.9465 } },
+        { name: "Gym 5 - Brooklyn: Downtown", position: { lat: 40.6928, lng: -73.9903 } },
+        { name: "Gym 6 - Williamsburg", position: { lat: 40.7081, lng: -73.9571 } },
+        { name: "Gym 7 - Flatbush", position: { lat: 40.6400, lng: -73.9550 } },
+        { name: "Gym 8 - Coney Island", position: { lat: 40.5749, lng: -73.9850 } },
+        { name: "Gym 9 - Los Angeles", position: { lat: 34.0522, lng: -118.2437 } },
+        { name: "Gym 10 - Chicago", position: { lat: 41.8781, lng: -87.6298 } },
+        { name: "Gym 11 - Houston", position: { lat: 29.7604, lng: -95.3698 } },
+        { name: "Gym 12 - Miami", position: { lat: 25.7617, lng: -80.1918 } }
+      ];
+
+      gymLocations.forEach((gym, index) => {
+        setTimeout(() => {
+          const marker = new google.maps.Marker({
+            position: gym.position,
+            map,
+            title: gym.name,
+            animation: google.maps.Animation.DROP
+          });
+
+          const infoWindow = new google.maps.InfoWindow({
+            content:
+              "<div style='font-family: Arial, sans-serif; font-size: 14px; max-width: 240px; color: black;'>" +
+              "<div style='display: flex; align-items: center; margin-bottom: 8px;'>" +
+              "<img src='gym_logo.jpg' alt='Gym Logo' style='height: 30px; width: 30px; object-fit: contain; margin-right: 10px;'>" +
+              "<div style='font-weight: bold; font-size: 16px;'>" + gym.name + "</div>" +
+              "</div>" +
+              "<div style='margin-bottom: 10px;'>🕒 Open: 9:00 AM – 9:00 PM</div>" +
+              "<a href='membership_form.html' style='" +
+              "display: inline-block;" +
+              "background-color: #d32f2f;" +
+              "color: white;" +
+              "text-decoration: none;" +
+              "padding: 8px 16px;" +
+              "border-radius: 5px;" +
+              "font-weight: bold;" +
+              "'>Join Now</a>" +
+              "</div>"
+          });
+
+          marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+          });
+        }, index * 300);
+      });
+
+      const input = document.getElementById("searchInput");
+      const searchBox = new google.maps.places.SearchBox(input);
+
+      map.addListener("bounds_changed", () => {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      let markers = [];
+
+      searchBox.addListener("places_changed", () => {
+        const places = searchBox.getPlaces();
+        if (places.length === 0) return;
+
+        markers.forEach(marker => marker.setMap(null));
+        markers = [];
+
+        const bounds = new google.maps.LatLngBounds();
+
+        places.forEach(place => {
+          if (!place.geometry) return;
+
+          const marker = new google.maps.Marker({
+            map,
+            title: place.name,
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP
+          });
+
+          const infoWindow = new google.maps.InfoWindow({
+            content:
+              "<div style='font-family: Arial, sans-serif; font-size: 14px; color: black;'>" +
+              "<strong>" + place.name + "</strong><br>" +
+              "🕒 Open: 9:00 AM – 9:00 PM</div>"
+          });
+
+          marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+          });
+
+          markers.push(marker);
+
+          if (place.geometry.viewport) {
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+
+        map.fitBounds(bounds);
+      });
+    }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhR5bZsUQVPmIO9X9EhlmKF0FwamCMQc&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
